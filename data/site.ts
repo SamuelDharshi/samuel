@@ -1,0 +1,36 @@
+export const site = {
+  name: "Samuel Dharshi N",
+  headline: "Full-stack + AI developer building in Web3 and security",
+  taglines: ["Hackathon winner", "Agent builder", "Web3 + AI", "Full-stack"],
+  bio: "Computer Science Engineering student at Loyola-ICAM College of Engineering and Technology (LICET). I build applications that solve real-world problems, from AI-assisted tools to privacy-preserving DeFi, and I have placed at multiple hackathons.",
+  currentArc: "Exploring new areas of code: confidential computing, agentic apps and secure full-stack systems.",
+  sideQuest: "Building small tools for everyday needs.",
+  lookingFor: "Internships and entry-level software roles, plus hackathon teams and collaborations.",
+  location: "Chennai, India",
+  email: "samueldharshi.27csb@licet.ac.in",
+  github: "https://github.com/SamuelDharshi",
+  linkedin: "https://linkedin.com/in/samueldharshi",
+  resume: "/resume.pdf",
+  url: "https://samueldharshi.dev",
+  blades: [
+    { name: "Languages", items: ["C", "C++", "Python", "Java", "JavaScript/TypeScript", "SQL"] },
+    { name: "Full Stack", items: ["Next.js", "Node.js", "Express.js", "Flask", "Streamlit", "PostgreSQL", "MySQL"] },
+    { name: "AI", items: ["Machine Learning", "Deep Learning", "Generative AI", "AI agents", "OpenCV", "Prompt engineering"] },
+    { name: "Web3", items: ["Solidity", "x402", "fhEVM (Zama)", "Starknet", "Hedera", "Monad", "NEAR", "Stellar"] },
+    { name: "Tools", items: ["Git", "GitHub", "Linux", "AWS", "VS Code"] },
+  ],
+  experience: [
+    { period: "Feb 2026 – Apr 2026", title: "Infosys Springboard Internship", org: "Public PolicyNav", text: "Architected a secure multi-role authentication system with JWT and Python, and integrated a readability dashboard that simplifies complex insurance policies." },
+    { period: "Aug 2025 – Sep 2025", title: "Generative AI Intern", org: "Altruisty Innovation Pvt Ltd", text: "Worked on Generative AI applications and AI-assisted development workflows, covering prompt engineering and practical implementation." },
+  ],
+  achievements: [
+    { title: "2nd Place, PL_Genesis Hackathon", text: "Zama & Protocol Labs tracks. $3,500 award for building null402." },
+    { title: "Top 10, Starknet Hackathon", text: "Awarded 14,208 STRK tokens." },
+    { title: "1st Place, PSG Tech Kriya 25 TaskOps Hackathon", text: "Awarded ₹7,500 cash prize." },
+  ],
+  education: "B.E. Computer Science Engineering, LICET · Aug 2023 – Aug 2027",
+  certificates: [
+    "Oracle Academy: Database Programming with SQL, Java Fundamentals",
+    "Infosys Springboard: Principles of Generative AI, Artificial Intelligence Primer",
+  ],
+};
