@@ -25,7 +25,7 @@ export default function Home() {
           <span className="mt-1 block font-[family-name:var(--font-serif)] text-[15vw] uppercase leading-[0.9] sm:text-7xl lg:text-8xl">Samuel Dharshi</span>
         </h1>
         <p className="reveal mt-6 max-w-lg font-[family-name:var(--font-sub)] text-lg sm:text-xl">
-          CS student. I build AI agents and Web3 apps, and win hackathons doing it.
+          Computer Science student at LICET. I love learning by building: AI, Web3 and full-stack projects.
         </p>
         <div className="reveal mt-10 flex flex-wrap gap-4">
           <Link href="/projects" className={`${btn} bg-pop text-black`}>Projects</Link>
