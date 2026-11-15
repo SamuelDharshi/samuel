@@ -19,6 +19,18 @@ export const repoUrl = (p: Project) => `https://github.com/${GITHUB_USER}/${p.sl
 
 export const projects: Project[] = [
   {
+    slug: "Tenor", title: "Tenor", featured: true,
+    summary: "Deliverable USDC/EURC FX forwards on Arc: lock a EUR/USD rate today and settle both currencies in one transaction on your date. Live on Arc mainnet.",
+    tags: ["Web3"], stack: ["Arc", "USDC", "EURC", "Circle USYC", "Arc Studio"],
+    demo: "https://arc-studio-e5ec61eb5f7847d88423d315.vercel.app", award: "Arc Microgrant ($500)", date: "2026-11",
+  },
+  {
+    slug: "ZeroGap", title: "ZeroGap",
+    summary: "Independent, open-source proof-of-solvency monitor for Strike Finance. Reads its lockers on Ethereum, Solana and Cardano, counts what it owes traders and shows the gap live, with Telegram safety alerts.",
+    tags: ["Web3", "Security"], stack: ["Ethereum", "Solana", "Cardano", "Telegram"],
+    demo: "https://zerogap-strike.vercel.app", date: "2026-11",
+  },
+  {
     slug: "null402", title: "null402", featured: true,
     summary: "Your position is not hidden. It is null. The first x402-based agentic confidential lending protocol on fhEVM: confidentiality by design, solvency by math.",
     tags: ["Web3", "Agents", "Security"], stack: ["TypeScript", "fhEVM", "x402", "FHE"],
