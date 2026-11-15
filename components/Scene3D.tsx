@@ -7,6 +7,9 @@ import * as THREE from "three";
 
 const ACCENT = "#ffffff";
 
+// Pointer tracked on window (the canvas layer ignores pointer events so the page stays clickable)
+const mouse = { x: 0, y: 0 };
+
 function scrollProgress() {
   const max = document.documentElement.scrollHeight - window.innerHeight;
   return max > 0 ? Math.min(1, Math.max(0, window.scrollY / max)) : 0;
@@ -21,6 +24,12 @@ function Robot({ reduced, narrow }: { reduced: boolean; narrow: boolean }) {
   const eye = useRef<THREE.MeshStandardMaterial>(null);
   const smooth = useRef(0);
 
+  useEffect(() => {
+    const on = (e: PointerEvent) => { mouse.x = (e.clientX / window.innerWidth) * 2 - 1; mouse.y = -((e.clientY / window.innerHeight) * 2 - 1); };
+    window.addEventListener("pointermove", on);
+    return () => window.removeEventListener("pointermove", on);
+  }, []);
+
   useFrame((state, dt) => {
     const t = state.clock.elapsedTime;
     const target = reduced ? 0 : scrollProgress();
@@ -32,14 +41,16 @@ function Robot({ reduced, narrow }: { reduced: boolean; narrow: boolean }) {
       const side = narrow ? 0 : Math.cos(p * Math.PI * 3) * state.viewport.width * 0.22;
       root.current.position.x = THREE.MathUtils.damp(root.current.position.x, side, 3, dt);
       root.current.position.y = (narrow ? 0.6 : -0.45) + (narrow ? 0 : Math.sin(p * Math.PI * 2) * 0.35);
-      root.current.rotation.y = p * Math.PI * 4;
+      root.current.rotation.y = p * Math.PI * 4 + (reduced ? 0 : mouse.x * 0.3);
       const s = narrow ? 0.55 : 1 - Math.sin(p * Math.PI) * 0.15;
       root.current.scale.setScalar(s);
     }
     if (head.current) {
-      const mx = state.pointer.x, my = state.pointer.y;
-      head.current.rotation.y = THREE.MathUtils.damp(head.current.rotation.y, mx * 0.6, 5, dt);
-      head.current.rotation.x = THREE.MathUtils.damp(head.current.rotation.x, -my * 0.35, 5, dt);
+      const mx = reduced ? 0 : mouse.x, my = reduced ? 0 : mouse.y;
+      head.current.rotation.y = THREE.MathUtils.damp(head.current.rotation.y, mx * 0.9, 6, dt);
+      head.current.rotation.x = THREE.MathUtils.damp(head.current.rotation.x, -my * 0.5, 6, dt);
+      head.current.rotation.z = THREE.MathUtils.damp(head.current.rotation.z, -mx * 0.12, 6, dt);
+      head.current.position.x = THREE.MathUtils.damp(head.current.position.x, mx * 0.12, 6, dt);
     }
     if (armL.current) armL.current.rotation.z = 0.5 + Math.sin(t * 1.4) * 0.12;
     if (armR.current) armR.current.rotation.z = -0.5 - Math.sin(t * 1.4 + 1) * 0.12;
