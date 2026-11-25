@@ -1,7 +1,11 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { getByUrlSlug, projects, repoUrl, urlSlug } from "@/data/projects";
+import { repoUrl, urlSlug } from "@/data/projects";
+import { getProjects, getProjectByUrlSlug } from "@/lib/github";
+
+export const revalidate = 3600;
+export const dynamicParams = true;
 
 function Section({ h, children }: { h: string; children: React.ReactNode }) {
   return (
@@ -12,19 +16,20 @@ function Section({ h, children }: { h: string; children: React.ReactNode }) {
   );
 }
 
-export function generateStaticParams() {
+export async function generateStaticParams() {
+  const { projects } = await getProjects();
   return projects.map((p) => ({ slug: urlSlug(p) }));
 }
 
 export async function generateMetadata({ params }: PageProps<"/projects/[slug]">): Promise<Metadata> {
   const { slug } = await params;
-  const p = getByUrlSlug(slug);
+  const p = await getProjectByUrlSlug(slug);
   return p ? { title: p.title, description: p.summary } : {};
 }
 
 export default async function ProjectPage({ params }: PageProps<"/projects/[slug]">) {
   const { slug } = await params;
-  const p = getByUrlSlug(slug);
+  const p = await getProjectByUrlSlug(slug);
   if (!p) notFound();
 
   return (

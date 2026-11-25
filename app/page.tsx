@@ -1,20 +1,24 @@
 import Link from "next/link";
 import { GithubIcon } from "@/components/BrandIcons";
 import { FolderGit2, Radio, Trophy, Briefcase } from "lucide-react";
-import { projects, moreRepos } from "@/data/projects";
+import { getProjects } from "@/lib/github";
+import { site } from "@/data/site";
 import Marketplace from "@/components/Marketplace";
 import { Reveal } from "@/components/Reveal";
 
 const btn = "box inline-flex min-h-12 items-center px-7 text-sm font-extrabold uppercase tracking-widest";
 const stack = ["TypeScript", "Python", "Solidity", "Next.js", "x402", "fhEVM", "zk-STARKs", "Rust", "Java", "Flask", "AI agents", "Hedera", "Starknet", "Monad"];
 
-export default function Home() {
-  const total = projects.length + moreRepos.length;
+export const revalidate = 3600;
+
+export default async function Home() {
+  const { projects, more } = await getProjects();
+  const total = projects.length + more.length;
   const live = projects.filter((p) => p.demo).length;
   const stats = [
     { n: total, l: "repos", Icon: FolderGit2 },
     { n: live, l: "live demos", Icon: Radio },
-    { n: 3, l: "hackathon podiums", Icon: Trophy },
+    { n: site.achievements.length, l: "wins & awards", Icon: Trophy },
     { n: 2, l: "internships", Icon: Briefcase },
   ];
   return (
@@ -65,7 +69,7 @@ export default function Home() {
             <h2 className="font-[family-name:var(--font-display)] text-4xl font-extrabold uppercase tracking-tight sm:text-6xl">Featured</h2>
             <Link href="/projects" className="font-mono text-sm font-bold underline underline-offset-4">All projects →</Link>
           </div>
-          <Marketplace compact />
+          <Marketplace items={projects} compact />
         </section>
 
         <section className="flex justify-center py-20">

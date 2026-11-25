@@ -3,7 +3,7 @@
 import { useMemo, useState, useRef } from "react";
 import Link from "next/link";
 import { AnimatePresence, motion } from "motion/react";
-import { allTags, projects, repoUrl, urlSlug, type Project } from "@/data/projects";
+import { allTags, repoUrl, urlSlug, type Project } from "@/data/projects";
 
 function Card({ p, i }: { p: Project; i: number }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -83,7 +83,7 @@ function Card({ p, i }: { p: Project; i: number }) {
   );
 }
 
-export default function Marketplace({ limit, compact }: { limit?: number; compact?: boolean }) {
+export default function Marketplace({ items: projects, limit, compact }: { items: Project[]; limit?: number; compact?: boolean }) {
   const [tag, setTag] = useState<string>("All");
   const [q, setQ] = useState("");
   const [liveOnly, setLiveOnly] = useState(false);
@@ -92,7 +92,7 @@ export default function Marketplace({ limit, compact }: { limit?: number; compac
     const c: Record<string, number> = { All: projects.length };
     allTags.forEach((t) => (c[t] = projects.filter((p) => p.tags.includes(t)).length));
     return c;
-  }, []);
+  }, [projects]);
 
   const shown = useMemo(() => {
     const needle = q.trim().toLowerCase();
@@ -103,7 +103,7 @@ export default function Marketplace({ limit, compact }: { limit?: number; compac
       .filter((p) => !needle || `${p.title} ${p.summary} ${p.stack.join(" ")}`.toLowerCase().includes(needle))
       .sort((a, b) => Number(!!b.featured) - Number(!!a.featured));
     return limit && tag === "All" && !needle && !liveOnly ? list.slice(0, limit) : list;
-  }, [tag, q, liveOnly, limit, compact]);
+  }, [projects, tag, q, liveOnly, limit, compact]);
 
   return (
     <div>
