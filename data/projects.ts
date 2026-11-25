@@ -72,7 +72,7 @@ export const projects: Project[] = [
     tags: ["Agents", "Web3", "Security"], stack: ["TypeScript", "USDC", "Circle", "Nemotron"],
   },
   {
-    slug: "Agent-Arena", title: "Agent Arena",
+    slug: "Agent-Arena", title: "Agent Arena", featured: true, award: "Winner · Tameion Agents (Canteen × Circle)",
     summary: "Built for the Tameion Agents Hackathon (Canteen × Circle): policy wallets, risk-tiered limits and reputation from outcomes, settled in USDC on Arc.",
     tags: ["Agents", "Web3"], stack: ["TypeScript", "USDC", "Arc"], demo: "https://agent-arena-tameion.vercel.app",
   },

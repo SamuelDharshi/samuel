@@ -24,6 +24,7 @@ export const site = {
     { period: "Aug 2025 – Sep 2025", title: "Generative AI Intern", org: "Altruisty Innovation Pvt Ltd", text: "Worked on Generative AI applications and AI-assisted development workflows, covering prompt engineering and practical implementation." },
   ],
   achievements: [
+    { title: "Winner, Tameion Agents Hackathon", text: "Canteen × Circle. Won with Agent Arena." },
     { title: "Arc Microgrant", text: "$500 microgrant for building Tenor on Arc." },
     { title: "2nd Place, PL_Genesis Hackathon", text: "Zama & Protocol Labs tracks. $3,500 award for building null402." },
     { title: "Top 10, Starknet Hackathon", text: "Awarded 14,208 STRK tokens." },
